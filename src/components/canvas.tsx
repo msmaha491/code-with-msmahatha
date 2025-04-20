@@ -2,7 +2,7 @@
 
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Button} from '@/components/ui/button';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Textarea} from '@/components/ui/textarea';
 import {generateWebsite} from '@/ai/flows/generate-website';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
@@ -17,6 +17,7 @@ const Canvas = () => {
   const [cssCode, setCssCode] = useState('');
   const [jsCode, setJsCode] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [websiteContent, setWebsiteContent] = useState<string | null>(null);
 
   const handleGenerateWebsite = async () => {
     setIsLoading(true);
@@ -25,10 +26,30 @@ const Canvas = () => {
       setHtmlCode(result.htmlCode);
       setCssCode(result.cssCode);
       setJsCode(result.jsCode);
+      setWebsiteContent(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Generated Website</title>
+          <style>${result.cssCode}</style>
+        </head>
+        <body>
+          ${result.htmlCode}
+          <script>${result.jsCode}</script>
+        </body>
+        </html>
+      `);
     } finally {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    // No need to create an iframe or inject the HTML directly.
+    // The iframe method has security concerns.
+  }, [websiteContent]);
 
   return (
     <div className="flex flex-col h-screen w-full items-center justify-center">
@@ -61,13 +82,14 @@ const Canvas = () => {
               </Button>
             </div>
 
-            {htmlCode || cssCode || jsCode ? (
+            {websiteContent ? (
               <div className="w-full">
                 <Tabs defaultValue="html" className="w-full flex-1">
                   <TabsList>
                     <TabsTrigger value="html">HTML</TabsTrigger>
                     <TabsTrigger value="css">CSS</TabsTrigger>
                     <TabsTrigger value="javascript">JavaScript</TabsTrigger>
+                    <TabsTrigger value="website">Website</TabsTrigger>
                   </TabsList>
                   <TabsContent value="html" className="outline-none">
                     <div className="flex items-center justify-end mb-2">
@@ -92,6 +114,15 @@ const Canvas = () => {
                     <SyntaxHighlighter language="javascript" style={dracula} className="w-full h-96 rounded-md text-sm">
                       {jsCode}
                     </SyntaxHighlighter>
+                  </TabsContent>
+                  <TabsContent value="website" className="outline-none">
+                      <iframe
+                        srcDoc={websiteContent}
+                        title="Generated Website"
+                        width="100%"
+                        height="600px"
+                        style={{border: '1px solid #ccc', borderRadius: '0.5rem'}}
+                      />
                   </TabsContent>
                 </Tabs>
               </div>

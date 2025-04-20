@@ -5,7 +5,7 @@
  *
  * - generateWebsite - A function that generates website code from a prompt.
  * - GenerateWebsiteInput - The input type for the generateWebsite function.
- * - GenerateWebsiteOutput - The return type for the generateWebsite function.
+ * - GenerateWebsiteOutput - The return type for the GenerateWebsite function.
  */
 
 import {ai} from '@/ai/ai-instance';
@@ -17,7 +17,9 @@ const GenerateWebsiteInputSchema = z.object({
 export type GenerateWebsiteInput = z.infer<typeof GenerateWebsiteInputSchema>;
 
 const GenerateWebsiteOutputSchema = z.object({
-  code: z.string().describe('The generated HTML, CSS, and JavaScript code for the website.'),
+  htmlCode: z.string().describe('The generated HTML code for the website.'),
+  cssCode: z.string().describe('The generated CSS code for the website.'),
+  jsCode: z.string().describe('The generated JavaScript code for the website.'),
 });
 export type GenerateWebsiteOutput = z.infer<typeof GenerateWebsiteOutputSchema>;
 
@@ -34,13 +36,35 @@ const prompt = ai.definePrompt({
   },
   output: {
     schema: z.object({
-      code: z.string().describe('The generated HTML, CSS, and JavaScript code for the website. Ensure the code is well-formatted and includes necessary comments.'),
+      htmlCode: z.string().describe('The generated HTML code for the website, including the basic structure and content.'),
+      cssCode: z.string().describe('The generated CSS code for the website, including styles and layout.'),
+      jsCode: z.string().describe('The generated JavaScript code for the website, including any interactive functionality.'),
     }),
   },
   prompt: `You are an expert web developer who specializes in generating clean, functional, and well-documented website code based on user descriptions.
 
-  Based on the following description, generate the complete HTML, CSS, and JavaScript code for the website. Include necessary comments to explain different sections of the code. Ensure the code is responsive and follows modern web development best practices.
+  Based on the following description, generate the complete HTML, CSS, and JavaScript code for the website.
+  Separate the code into three distinct sections: HTML, CSS, and JavaScript.
+  Ensure each section is clearly marked and well-formatted. Include necessary comments to explain different sections of the code. Ensure the code is responsive and follows modern web development best practices.
+
   Description: {{{prompt}}}
+
+  **Output Format:**
+
+  \`\`\`html
+  <!-- HTML Code -->
+  ...
+  \`\`\`
+
+  \`\`\`css
+  /* CSS Code */
+  ...
+  \`\`\`
+
+  \`\`\`javascript
+  // JavaScript Code
+  ...
+  \`\`\`
   `,
 });
 

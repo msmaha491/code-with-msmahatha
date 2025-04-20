@@ -16,14 +16,9 @@ const Canvas = () => {
 
   const handleGenerateWebsite = async () => {
     const result = await generateWebsite({prompt});
-    // Split the code into HTML, CSS, and JavaScript
-    const htmlMatch = result.code.match(/<html[\s\S]*<\/html>/i);
-    const cssMatch = result.code.match(/<style[\s\S]*<\/style>/i);
-    const jsMatch = result.code.match(/<script[\s\S]*<\/script>/i);
-
-    setHtmlCode(htmlMatch ? htmlMatch[0] : '');
-    setCssCode(cssMatch ? cssMatch[0] : '');
-    setJsCode(jsMatch ? jsMatch[0] : '');
+    setHtmlCode(result.htmlCode);
+    setCssCode(result.cssCode);
+    setJsCode(result.jsCode);
   };
 
   return (

@@ -95,7 +95,7 @@ const Canvas = () => {
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={htmlCode} />
                     </div>
-                    <SyntaxHighlighter language="html" style={dracula} className="w-full h-96 rounded-md text-sm">
+                    <SyntaxHighlighter language="html" style={dracula} className="w-full h-64 rounded-md text-sm">
                       {htmlCode}
                     </SyntaxHighlighter>
                   </TabsContent>
@@ -103,7 +103,7 @@ const Canvas = () => {
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={cssCode} />
                     </div>
-                    <SyntaxHighlighter language="css" style={dracula} className="w-full h-96 rounded-md text-sm">
+                    <SyntaxHighlighter language="css" style={dracula} className="w-full h-64 rounded-md text-sm">
                       {cssCode}
                     </SyntaxHighlighter>
                   </TabsContent>
@@ -111,7 +111,7 @@ const Canvas = () => {
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={jsCode} />
                     </div>
-                    <SyntaxHighlighter language="javascript" style={dracula} className="w-full h-96 rounded-md text-sm">
+                    <SyntaxHighlighter language="javascript" style={dracula} className="w-full h-64 rounded-md text-sm">
                       {jsCode}
                     </SyntaxHighlighter>
                   </TabsContent>
@@ -120,7 +120,7 @@ const Canvas = () => {
                         srcDoc={websiteContent}
                         title="Generated Website"
                         width="100%"
-                        height="600px"
+                        height="400px"
                         style={{border: '1px solid #ccc', borderRadius: '0.5rem'}}
                       />
                   </TabsContent>

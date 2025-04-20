@@ -7,18 +7,25 @@ import {Textarea} from '@/components/ui/textarea';
 import {generateWebsite} from '@/ai/flows/generate-website';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
 import {CopyToClipboard} from '@/components/copy-to-clipboard';
+import {Loader2} from 'lucide-react';
 
 const Canvas = () => {
   const [prompt, setPrompt] = useState('');
   const [htmlCode, setHtmlCode] = useState('');
   const [cssCode, setCssCode] = useState('');
   const [jsCode, setJsCode] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleGenerateWebsite = async () => {
-    const result = await generateWebsite({prompt});
-    setHtmlCode(result.htmlCode);
-    setCssCode(result.cssCode);
-    setJsCode(result.jsCode);
+    setIsLoading(true);
+    try {
+      const result = await generateWebsite({prompt});
+      setHtmlCode(result.htmlCode);
+      setCssCode(result.cssCode);
+      setJsCode(result.jsCode);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -36,8 +43,19 @@ const Canvas = () => {
                 value={prompt}
                 onChange={e => setPrompt(e.target.value)}
               />
-              <Button onClick={handleGenerateWebsite} className="mb-4">
-                Generate Website
+              <Button
+                onClick={handleGenerateWebsite}
+                className="mb-4"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Generating...
+                  </>
+                ) : (
+                  'Generate Website'
+                )}
               </Button>
             </div>
 

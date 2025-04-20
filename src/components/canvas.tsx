@@ -30,7 +30,7 @@ const Canvas = () => {
     <div className="flex flex-col h-screen w-full items-center justify-center">
       <Card className="w-4/5 h-4/5 flex flex-col">
         <CardHeader>
-          <CardTitle>Visual Editor</CardTitle>
+          <CardTitle>Code With Msmahatha</CardTitle>
         </CardHeader>
         <CardContent className="flex-grow flex flex-col">
           <Textarea

@@ -28,62 +28,68 @@ const Canvas = () => {
           <CardTitle>Code With Msmahatha</CardTitle>
         </CardHeader>
         <CardContent className="flex-grow flex flex-col">
-          <Textarea
-            placeholder="Describe the website you want to generate..."
-            className="w-full h-32 mb-4"
-            value={prompt}
-            onChange={e => setPrompt(e.target.value)}
-          />
-          <Button onClick={handleGenerateWebsite} className="mb-4">
-            Generate Website
-          </Button>
-
-          {htmlCode || cssCode || jsCode ? (
-            <Tabs defaultValue="html" className="w-full flex-1">
-              <TabsList>
-                <TabsTrigger value="html">HTML</TabsTrigger>
-                <TabsTrigger value="css">CSS</TabsTrigger>
-                <TabsTrigger value="javascript">JavaScript</TabsTrigger>
-              </TabsList>
-              <TabsContent value="html" className="outline-none">
-                <div className="flex items-center justify-end mb-2">
-                  <CopyToClipboard text={htmlCode} />
-                </div>
-                <Textarea
-                  readOnly
-                  className="w-full h-96"
-                  value={htmlCode}
-                />
-              </TabsContent>
-              <TabsContent value="css" className="outline-none">
-                <div className="flex items-center justify-end mb-2">
-                  <CopyToClipboard text={cssCode} />
-                </div>
-                <Textarea
-                  readOnly
-                  className="w-full h-96"
-                  value={cssCode}
-                />
-              </TabsContent>
-              <TabsContent value="javascript" className="outline-none">
-                <div className="flex items-center justify-end mb-2">
-                  <CopyToClipboard text={jsCode} />
-                </div>
-                <Textarea
-                  readOnly
-                  className="w-full h-96"
-                  value={jsCode}
-                />
-              </TabsContent>
-            </Tabs>
-          ) : (
-            <div className="flex items-center justify-center h-full">
-              <p className="text-muted-foreground">
-                Describe your website and click "Generate Website" to see the
-                code.
-              </p>
+          <div className="grid grid-cols-2 gap-4 h-full">
+            <div className="flex flex-col">
+              <Textarea
+                placeholder="Describe the website you want to generate..."
+                className="w-full h-32 mb-4"
+                value={prompt}
+                onChange={e => setPrompt(e.target.value)}
+              />
+              <Button onClick={handleGenerateWebsite} className="mb-4">
+                Generate Website
+              </Button>
             </div>
-          )}
+
+            {htmlCode || cssCode || jsCode ? (
+              <div className="w-full">
+                <Tabs defaultValue="html" className="w-full flex-1">
+                  <TabsList>
+                    <TabsTrigger value="html">HTML</TabsTrigger>
+                    <TabsTrigger value="css">CSS</TabsTrigger>
+                    <TabsTrigger value="javascript">JavaScript</TabsTrigger>
+                  </TabsList>
+                  <TabsContent value="html" className="outline-none">
+                    <div className="flex items-center justify-end mb-2">
+                      <CopyToClipboard text={htmlCode} />
+                    </div>
+                    <Textarea
+                      readOnly
+                      className="w-full h-96"
+                      value={htmlCode}
+                    />
+                  </TabsContent>
+                  <TabsContent value="css" className="outline-none">
+                    <div className="flex items-center justify-end mb-2">
+                      <CopyToClipboard text={cssCode} />
+                    </div>
+                    <Textarea
+                      readOnly
+                      className="w-full h-96"
+                      value={cssCode}
+                    />
+                  </TabsContent>
+                  <TabsContent value="javascript" className="outline-none">
+                    <div className="flex items-center justify-end mb-2">
+                      <CopyToClipboard text={jsCode} />
+                    </div>
+                    <Textarea
+                      readOnly
+                      className="w-full h-96"
+                      value={jsCode}
+                    />
+                  </TabsContent>
+                </Tabs>
+              </div>
+            ) : (
+              <div className="flex items-center justify-center h-full">
+                <p className="text-muted-foreground">
+                  Describe your website and click "Generate Website" to see the
+                  code.
+                </p>
+              </div>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>

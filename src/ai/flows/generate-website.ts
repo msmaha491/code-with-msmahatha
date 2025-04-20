@@ -43,32 +43,9 @@ const prompt = ai.definePrompt({
   },
   prompt: `You are an expert web developer who specializes in generating clean, functional, and well-documented website code based on user descriptions.
 
-  Based on the following description, generate the complete HTML, CSS, and JavaScript code for the website.
-  The HTML code should include all necessary elements, classes, and content.
-  The CSS code should include all necessary styles, layout rules, and media queries for responsiveness.
-  The JavaScript code should include all necessary event listeners, functions, and logic for interactivity.
-  Ensure the code is functional and follows modern web development best practices.
-  Ensure the code is properly formatted and easy to read.
-  Ensure that website is responsive.
+  Based on the following description, generate the complete HTML, CSS, and JavaScript code for the website. The code must be fully functional.
 
   Description: {{{prompt}}}
-
-  **Output Format:**
-
-  \`\`\`html
-  <!-- HTML Code -->
-  ...
-  \`\`\`
-
-  \`\`\`css
-  /* CSS Code */
-  ...
-  \`\`\`
-
-  \`\`\`javascript
-  // JavaScript Code
-  ...
-  \`\`\`
   `,
 });
 

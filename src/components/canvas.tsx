@@ -53,12 +53,12 @@ const Canvas = () => {
 
   return (
     <div className="flex flex-col h-screen w-full items-center justify-center">
-      <Card className="w-4/5 h-4/5 flex flex-col">
+      <Card className="w-4/5 md:w-3/5 h-4/5 md:h-3/4 flex flex-col">
         <CardHeader>
           <CardTitle>Code With Msmahatha</CardTitle>
         </CardHeader>
         <CardContent className="flex-grow flex flex-col">
-          <div className="grid grid-cols-2 gap-4 h-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
             <div className="flex flex-col">
               <Textarea
                 placeholder="Describe the website you want to generate..."
@@ -121,7 +121,7 @@ const Canvas = () => {
                         srcDoc={websiteContent}
                         title="Generated Website"
                         width="100%"
-                        height="300px" // Reduced height for better alignment
+                        height="200px" // Reduced height for better alignment
                         style={{
                           border: '1px solid #ccc',
                           borderRadius: '0.5rem',

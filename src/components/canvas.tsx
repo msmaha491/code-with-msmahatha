@@ -3,27 +3,10 @@
 import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Button} from '@/components/ui/button';
 import React, {useState} from 'react';
-import {suggestDesignImprovements} from '@/ai/flows/suggest-design-improvements';
 import {Textarea} from '@/components/ui/textarea';
 import {generateWebsite} from '@/ai/flows/generate-website';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
 import {CopyToClipboard} from '@/components/copy-to-clipboard';
-
-const DesignSuggestionButton = () => {
-  const handleDesignSuggestion = async () => {
-    const suggestions = await suggestDesignImprovements({
-      layout: 'Current website layout',
-      style: 'Current website style',
-    });
-    console.log(suggestions);
-  };
-
-  return (
-    <Button onClick={handleDesignSuggestion} className="mt-4">
-      Get AI Design Suggestions
-    </Button>
-  );
-};
 
 const Canvas = () => {
   const [prompt, setPrompt] = useState('');
@@ -108,7 +91,6 @@ const Canvas = () => {
           )}
         </CardContent>
       </Card>
-      <DesignSuggestionButton />
     </div>
   );
 };

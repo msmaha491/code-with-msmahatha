@@ -9,7 +9,7 @@ import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
 import {CopyToClipboard} from '@/components/copy-to-clipboard';
 import {Loader2} from 'lucide-react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { dracula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import {dracula} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const Canvas = () => {
   const [prompt, setPrompt] = useState('');
@@ -115,14 +115,20 @@ const Canvas = () => {
                       {jsCode}
                     </SyntaxHighlighter>
                   </TabsContent>
-                  <TabsContent value="website" className="outline-none" className="w-full overflow-hidden">
+                  <TabsContent value="website" className="outline-none">
+                    <div className="w-full overflow-hidden">
                       <iframe
                         srcDoc={websiteContent}
                         title="Generated Website"
                         width="100%"
-                        height="400px"
-                        style={{border: '1px solid #ccc', borderRadius: '0.5rem'}}
+                        height="300px" // Reduced height for better alignment
+                        style={{
+                          border: '1px solid #ccc',
+                          borderRadius: '0.5rem',
+                          backgroundColor: '#f0f8ff', // Add a light blue background for visual appeal
+                        }}
                       />
+                    </div>
                   </TabsContent>
                 </Tabs>
               </div>

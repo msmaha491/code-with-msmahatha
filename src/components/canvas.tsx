@@ -4,7 +4,6 @@ import {Card, CardContent, CardHeader, CardTitle} from '@/components/ui/card';
 import {Button} from '@/components/ui/button';
 import React, {useState, useEffect} from 'react';
 import {Textarea} from '@/components/ui/textarea';
-import {generateWebsite} from '@/ai/flows/generate-website';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
 import {CopyToClipboard} from '@/components/copy-to-clipboard';
 import {Loader2} from 'lucide-react';

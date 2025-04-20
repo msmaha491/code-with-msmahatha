@@ -41,6 +41,9 @@ body {
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 48 50% 25%;
     --sidebar-ring: 48 82% 53%;
+
+    --code-editor-background: #1a1a1a;
+    --website-preview-background: #262626;
   }
   .dark {
     --background: 240 5.3% 5.1%; /* #0D0D0D */
@@ -75,6 +78,9 @@ body {
     --sidebar-accent-foreground: 0 0% 98%;
     --sidebar-border: 48 50% 25%;
     --sidebar-ring: 48 82% 53%;
+
+    --code-editor-background: #1a1a1a;
+    --website-preview-background: #262626;
   }
 }
 
@@ -100,5 +106,18 @@ body {
     width: 100%;
     height: 100%;
     border: none;
+  }
+
+  .card {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06),
+      0 0 10px rgba(0, 128, 128, 0.3); /* Teal shadow */
+  }
+
+  .tabs[data-orientation="horizontal"] {
+    box-shadow: 0 2px 4px rgba(0, 128, 128, 0.2); /* Teal shadow */
+  }
+
+  .textarea {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   }
 }

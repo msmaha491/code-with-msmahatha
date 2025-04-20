@@ -115,7 +115,7 @@ const Canvas = () => {
                       {jsCode}
                     </SyntaxHighlighter>
                   </TabsContent>
-                  <TabsContent value="website" className="outline-none">
+                  <TabsContent value="website" className="outline-none" className="w-full overflow-hidden">
                       <iframe
                         srcDoc={websiteContent}
                         title="Generated Website"

@@ -53,7 +53,7 @@ const Canvas = () => {
 
   return (
     <div className="flex flex-col h-screen w-full items-center justify-center">
-      <Card className="w-4/5 md:w-3/5 h-4/5 md:h-3/4 flex flex-col">
+      <Card className="w-full md:w-3/5 h-auto md:h-3/4 flex flex-col">
         <CardHeader>
           <CardTitle>Code With Msmahatha</CardTitle>
         </CardHeader>

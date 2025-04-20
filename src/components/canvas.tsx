@@ -8,6 +8,8 @@ import {generateWebsite} from '@/ai/flows/generate-website';
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/components/ui/tabs';
 import {CopyToClipboard} from '@/components/copy-to-clipboard';
 import {Loader2} from 'lucide-react';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import { dracula } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const Canvas = () => {
   const [prompt, setPrompt] = useState('');
@@ -71,31 +73,25 @@ const Canvas = () => {
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={htmlCode} />
                     </div>
-                    <Textarea
-                      readOnly
-                      className="w-full h-96"
-                      value={htmlCode}
-                    />
+                    <SyntaxHighlighter language="html" style={dracula} className="w-full h-96 rounded-md">
+                      {htmlCode}
+                    </SyntaxHighlighter>
                   </TabsContent>
                   <TabsContent value="css" className="outline-none">
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={cssCode} />
                     </div>
-                    <Textarea
-                      readOnly
-                      className="w-full h-96"
-                      value={cssCode}
-                    />
+                    <SyntaxHighlighter language="css" style={dracula} className="w-full h-96 rounded-md">
+                      {cssCode}
+                    </SyntaxHighlighter>
                   </TabsContent>
                   <TabsContent value="javascript" className="outline-none">
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={jsCode} />
                     </div>
-                    <Textarea
-                      readOnly
-                      className="w-full h-96"
-                      value={jsCode}
-                    />
+                    <SyntaxHighlighter language="javascript" style={dracula} className="w-full h-96 rounded-md">
+                      {jsCode}
+                    </SyntaxHighlighter>
                   </TabsContent>
                 </Tabs>
               </div>
@@ -115,3 +111,5 @@ const Canvas = () => {
 };
 
 export default Canvas;
+
+    

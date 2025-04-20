@@ -79,6 +79,22 @@ const generateWebsiteFlow = ai.defineFlow<
   },
   async input => {
     const {output} = await prompt(input);
-    return output!;
+    const formattedHtml = `
+    <!-- HTML Code -->
+    ${output?.htmlCode || ''}
+    `;
+    const formattedCss = `
+    /* CSS Code */
+    ${output?.cssCode || ''}
+    `;
+    const formattedJs = `
+    // JavaScript Code
+    ${output?.jsCode || ''}
+    `;
+    return {
+      htmlCode: formattedHtml,
+      cssCode: formattedCss,
+      jsCode: formattedJs,
+    };
   }
 );

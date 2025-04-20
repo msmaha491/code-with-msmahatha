@@ -52,97 +52,89 @@ const Canvas = () => {
   }, [websiteContent]);
 
   return (
-    <div className="flex flex-col h-screen w-full items-center justify-center">
-      <Card className="w-full md:w-3/5 h-auto md:h-3/4 flex flex-col">
+    <div className="flex flex-col md:flex-row h-screen w-full items-center justify-center p-4">
+      <Card className="w-full md:w-2/5 h-auto md:h-3/4 flex flex-col">
         <CardHeader>
           <CardTitle>Code With Msmahatha</CardTitle>
         </CardHeader>
         <CardContent className="flex-grow flex flex-col">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 h-full">
-            <div className="flex flex-col">
-              <Textarea
-                placeholder="Describe the website you want to generate..."
-                className="w-full h-32 mb-4"
-                value={prompt}
-                onChange={e => setPrompt(e.target.value)}
-              />
-              <Button
-                onClick={handleGenerateWebsite}
-                className="mb-4"
-                disabled={isLoading}
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generating...
-                  </>
-                ) : (
-                  'Generate Website'
-                )}
-              </Button>
-            </div>
-
-            {websiteContent ? (
-              <div className="w-full">
-                <Tabs defaultValue="html" className="w-full flex-1">
-                  <TabsList>
-                    <TabsTrigger value="html">HTML</TabsTrigger>
-                    <TabsTrigger value="css">CSS</TabsTrigger>
-                    <TabsTrigger value="javascript">JavaScript</TabsTrigger>
-                    <TabsTrigger value="website">Website</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="html" className="outline-none">
-                    <div className="flex items-center justify-end mb-2">
-                      <CopyToClipboard text={htmlCode} />
-                    </div>
-                    <SyntaxHighlighter language="html" style={dracula} className="w-full h-64 rounded-md text-sm">
-                      {htmlCode}
-                    </SyntaxHighlighter>
-                  </TabsContent>
-                  <TabsContent value="css" className="outline-none">
-                    <div className="flex items-center justify-end mb-2">
-                      <CopyToClipboard text={cssCode} />
-                    </div>
-                    <SyntaxHighlighter language="css" style={dracula} className="w-full h-64 rounded-md text-sm">
-                      {cssCode}
-                    </SyntaxHighlighter>
-                  </TabsContent>
-                  <TabsContent value="javascript" className="outline-none">
-                    <div className="flex items-center justify-end mb-2">
-                      <CopyToClipboard text={jsCode} />
-                    </div>
-                    <SyntaxHighlighter language="javascript" style={dracula} className="w-full h-64 rounded-md text-sm">
-                      {jsCode}
-                    </SyntaxHighlighter>
-                  </TabsContent>
-                  <TabsContent value="website" className="outline-none">
-                    <div className="w-full overflow-hidden">
-                      <iframe
-                        srcDoc={websiteContent}
-                        title="Generated Website"
-                        width="100%"
-                        height="200px" // Reduced height for better alignment
-                        style={{
-                          border: '1px solid #ccc',
-                          borderRadius: '0.5rem',
-                          backgroundColor: '#f0f8ff', // Add a light blue background for visual appeal
-                        }}
-                      />
-                    </div>
-                  </TabsContent>
-                </Tabs>
-              </div>
-            ) : (
-              <div className="flex items-center justify-center h-full">
-                <p className="text-muted-foreground">
-                  Describe your website and click "Generate Website" to see the
-                  code.
-                </p>
-              </div>
-            )}
+          <div className="flex flex-col">
+            <Textarea
+              placeholder="Describe the website you want to generate..."
+              className="w-full h-32 mb-4"
+              value={prompt}
+              onChange={e => setPrompt(e.target.value)}
+            />
+            <Button
+              onClick={handleGenerateWebsite}
+              className="mb-4"
+              disabled={isLoading}
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Generating...
+                </>
+              ) : (
+                'Generate Website'
+              )}
+            </Button>
           </div>
         </CardContent>
       </Card>
+
+      {websiteContent ? (
+        <div className="w-full md:w-3/5 h-full flex flex-col">
+          <Tabs defaultValue="website" className="w-full flex-1">
+            <TabsList>
+              <TabsTrigger value="html">HTML</TabsTrigger>
+              <TabsTrigger value="css">CSS</TabsTrigger>
+              <TabsTrigger value="javascript">JavaScript</TabsTrigger>
+              <TabsTrigger value="website">Website</TabsTrigger>
+            </TabsList>
+            <TabsContent value="html" className="outline-none">
+              <div className="flex items-center justify-end mb-2">
+                <CopyToClipboard text={htmlCode} />
+              </div>
+              <SyntaxHighlighter language="html" style={dracula} className="w-full h-64 rounded-md text-sm">
+                {htmlCode}
+              </SyntaxHighlighter>
+            </TabsContent>
+            <TabsContent value="css" className="outline-none">
+              <div className="flex items-center justify-end mb-2">
+                <CopyToClipboard text={cssCode} />
+              </div>
+              <SyntaxHighlighter language="css" style={dracula} className="w-full h-64 rounded-md text-sm">
+                {cssCode}
+              </SyntaxHighlighter>
+            </TabsContent>
+            <TabsContent value="javascript" className="outline-none">
+              <div className="flex items-center justify-end mb-2">
+                <CopyToClipboard text={jsCode} />
+              </div>
+              <SyntaxHighlighter language="javascript" style={dracula} className="w-full h-64 rounded-md text-sm">
+                {jsCode}
+              </SyntaxHighlighter>
+            </TabsContent>
+            <TabsContent value="website" className="outline-none h-full">
+              <div className="w-full h-full overflow-hidden">
+                <iframe
+                  srcDoc={websiteContent}
+                  title="Generated Website"
+                  className="w-full h-full"
+                />
+              </div>
+            </TabsContent>
+          </Tabs>
+        </div>
+      ) : (
+        <div className="w-full md:w-3/5 h-full flex items-center justify-center">
+          <p className="text-muted-foreground">
+            Describe your website and click "Generate Website" to see the
+            code.
+          </p>
+        </div>
+      )}
     </div>
   );
 };

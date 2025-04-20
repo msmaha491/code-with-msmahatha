@@ -73,7 +73,7 @@ const Canvas = () => {
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={htmlCode} />
                     </div>
-                    <SyntaxHighlighter language="html" style={dracula} className="w-full h-96 rounded-md">
+                    <SyntaxHighlighter language="html" style={dracula} className="w-full h-96 rounded-md text-sm">
                       {htmlCode}
                     </SyntaxHighlighter>
                   </TabsContent>
@@ -81,7 +81,7 @@ const Canvas = () => {
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={cssCode} />
                     </div>
-                    <SyntaxHighlighter language="css" style={dracula} className="w-full h-96 rounded-md">
+                    <SyntaxHighlighter language="css" style={dracula} className="w-full h-96 rounded-md text-sm">
                       {cssCode}
                     </SyntaxHighlighter>
                   </TabsContent>
@@ -89,7 +89,7 @@ const Canvas = () => {
                     <div className="flex items-center justify-end mb-2">
                       <CopyToClipboard text={jsCode} />
                     </div>
-                    <SyntaxHighlighter language="javascript" style={dracula} className="w-full h-96 rounded-md">
+                    <SyntaxHighlighter language="javascript" style={dracula} className="w-full h-96 rounded-md text-sm">
                       {jsCode}
                     </SyntaxHighlighter>
                   </TabsContent>
@@ -111,5 +111,3 @@ const Canvas = () => {
 };
 
 export default Canvas;
-
-    
